@@ -17,8 +17,10 @@ def configure_views(con) -> None:
 		key.PhaseName = 'ST' AND
 		key.ParentClassName = 'System' AND
 		key.ChildClassName = 'Generator' AND
-		key.PropertyName IN ('Generation', 'Available Capacity') AND
-		key.ChildObjectCategoryName IN ('Hydro Pump', 'Other', 'Solar', 'Wind', 'Biomass', 'Hard Coal', 'Fossil Gas', 'Waste', 'Fossil Oil', 'Lignite', 'Nuclear', 'Hydro');"""
+		key.PropertyName IN ('Generation', 'Available Capacity');"""
+
+#Querying specific properties can be accomplished by appending this line to previous view
+#AND key.ChildObjectCategoryName IN ('Hydro Pump', 'Other', 'Solar', 'Wind', 'Biomass', 'Hard Coal', 'Fossil Gas', 'Waste', 'Fossil Oil', 'Lignite', 'Nuclear', 'Hydro')
 
     con.execute(view_command)
     
