@@ -1,0 +1,73 @@
+{
+  "StudyId": "88b28ec1-2036-4fde-bad0-180406be58b5",
+  "ChangeSetId": "407b542e-0867-48ef-af55-44298b1aa6f5",
+  "Models": [
+    "No Carbon Price or Flow Constraint"
+  ],
+  "SimulationOptions": {
+    "Locale": 1033,
+    "SolutionOptions": {
+      "ParquetSchemaVersion": 2
+    },
+    "EnableRealTimeLog": true,
+    "IsModelDistributionRun": false,
+    "SimulationRunType": 2,
+    "SimulationTasks": [
+      {
+        "Name": "Writing membership data to disk for post simulation analysis",
+        "TaskType": "Pre",
+        "Files": [
+          {
+            "Path": "JupyterSamples/anthony.griesel/**",
+            "Version": null
+          }
+        ],
+        "Arguments": "python3 query_write_memberships.py",
+        "ContinueOnError": true,
+        "ExecutionOrder": 1
+      },
+      {
+        "Name": "Configure query views for Model",
+        "TaskType": "Post",
+        "Arguments": "python3 configure_duck.py 'No Carbon Price or Flow Constraint' False",
+        "ContinueOnError": true,
+        "ExecutionOrder": 2
+      },
+      {
+        "Name": "Post Simulation querying of parquet data",
+        "TaskType": "Post",
+        "Arguments": "python3 query_data.py",
+        "ContinueOnError": true,
+        "ExecutionOrder": 3
+      },
+      {
+        "Name": "Delete Post simulation script artifacts",
+        "TaskType": "Post",
+        "Arguments": "python3 clean_workflow_files.py",
+        "ContinueOnError": true,
+        "ExecutionOrder": 4
+      }
+    ]
+  },
+  "SimulationData": [
+    {
+      "Uri": "https://studies-api-aquila.energyexemplar.com/1.0/downloads/studies/88b28ec1-2036-4fde-bad0-180406be58b5/changesets/407b542e-0867-48ef-af55-44298b1aa6f5/input-data",
+      "Type": "ChangesetDatabase"
+    }
+  ],
+  "ParallelizationOptions": {
+    "InstanceCount": 1
+  },
+  "SimulationEngine": {
+    "EngineId": "0c3d332e-b2fa-4003-9e97-ea3cdce27324",
+    "Version": "11.000.002.25031835",
+    "EngineType": "Performance",
+    "OperatingSystem": 1,
+    "OptimizationEngine": 0
+  },
+  "Source": "Jupyter",
+  "Priority": 1,
+  "RequestedCpuCores": 2,
+  "MinimumMemoryInGb": 16.00,
+  "SimulationType": "None"
+}
