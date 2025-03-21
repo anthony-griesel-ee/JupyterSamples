@@ -9,6 +9,8 @@ Familiarity with the following tools are useful but not mandatory.
 
 ## Workbook Examples:
 - [Pre and Post Simulation Tasks](PreAndPostTasks/Workflow.ipynb)
-  - Common automation with advanced Pre and Post configurations. 
+  - Common automation with advanced Pre and Post configurations.
+- [Solution Querying using DuckDB](SolutionQuerying/DuckDBExample.ipynb)
+  - Querying PLEXOS solution data the easy way. Using DuckDB, Parquet and common views. 
 - [Datahub]()
   - Useful commands using Datahub versioning and storage
