@@ -12,5 +12,5 @@ Familiarity with the following tools are useful but not mandatory.
   - Common automation with advanced Pre and Post configurations.
 - [Solution Querying using DuckDB](SolutionQuerying/DuckDBExample.ipynb)
   - Querying PLEXOS solution data the easy way. Using DuckDB, Parquet and common views. 
-- [Datahub]()
+- [Datahub](Datahub/DatahubExample.ipynb)
   - Useful commands using Datahub versioning and storage
