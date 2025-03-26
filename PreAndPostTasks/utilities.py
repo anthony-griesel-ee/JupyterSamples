@@ -1,21 +1,25 @@
 import time
+from eecloud.cloudsdk import CloudSDK, SDKBase
 from eecloud.models import *
-from eecloud.cloudsdk import CloudSDK
 
 finished_list = ["CompletedSuccess", "Failed", "Cancelled", "CompletedError"]
 
 def get_simulation(pxc: CloudSDK, simulation_id:GuidValue) -> Contracts_Simulation:
-    simulation_response = pxc.simulation.list_simulations(simulation_id=simulation_id, print_message=False)
-    simulation_data = pxc.simulation.get_final_response(simulation_response)
-    if simulation_data.EventData is None or simulation_data.EventData.SimulationRecords is None:
+    simulation_response : list[CommandResponse[Contracts_ListSimulationResponse]] = pxc.simulation.list_simulations(simulation_id=simulation_id, print_message=False)
+    simulation_data: Contracts_ListSimulationResponse = SDKBase.get_response_data(simulation_response)
+    
+    if simulation_data.SimulationRecords is None:
         raise f"Could not find simulation with Id: {simulation_id}"
+    
     return simulation_data.EventData.SimulationRecords[0]
     
 def get_executions(pxc: CloudSDK, execution_id:GuidValue) -> list[Contracts_Simulation]:
-    execution_response = pxc.simulation.list_simulations(execution_id=execution_id, print_message=False)
-    execution_data = pxc.simulation.get_final_response(execution_response)
-    if execution_data.EventData is None or execution_data.EventData.SimulationRecords is None:
+    execution_response: list[CommandResponse[Contracts_ListSimulationResponse]] = pxc.simulation.list_simulations(execution_id=execution_id, print_message=False)
+    execution_data = SDKBase.get_response_data(execution_response)
+    
+    if execution_data is None or execution_data.SimulationRecords is None:
         raise f"Could not find execution with Id: {execution_id}"
+    
     return execution_data.EventData.SimulationRecords
 
 def wait_simulation_finish(pxc: CloudSDK, simulation_id:GuidValue) -> Contracts_Simulation:
@@ -65,10 +69,3 @@ def download_solution_data(pxc: CloudSDK, solution_id: GuidValue, output_directo
     pxc.solution.download_solution(solution_id=solution_id, output_directory=output_directory, solution_type="TaskArtifacts", overwrite=True)
     pxc.solution.download_solution(solution_id=solution_id, output_directory=output_directory, solution_type="AgentLog", overwrite=True)
     print("Solution data downloaded")
-    
-def show_csv(csv_file_path: str, line_count : int = 30):
-    with open(csv_file_path, "r") as table:
-        for x in range(line_count):
-            line = table.readlines(10)
-        print(line)
-
