@@ -11,7 +11,7 @@ def get_simulation(pxc: CloudSDK, simulation_id:GuidValue) -> Contracts_Simulati
     if simulation_data.SimulationRecords is None:
         raise f"Could not find simulation with Id: {simulation_id}"
     
-    return simulation_data.EventData.SimulationRecords[0]
+    return simulation_data.SimulationRecords[0]
     
 def get_executions(pxc: CloudSDK, execution_id:GuidValue) -> list[Contracts_Simulation]:
     execution_response: list[CommandResponse[Contracts_ListSimulationResponse]] = pxc.simulation.list_simulations(execution_id=execution_id, print_message=False)
@@ -20,7 +20,7 @@ def get_executions(pxc: CloudSDK, execution_id:GuidValue) -> list[Contracts_Simu
     if execution_data is None or execution_data.SimulationRecords is None:
         raise f"Could not find execution with Id: {execution_id}"
     
-    return execution_data.EventData.SimulationRecords
+    return execution_data.SimulationRecords
 
 def wait_simulation_finish(pxc: CloudSDK, simulation_id:GuidValue) -> Contracts_Simulation:
     running = True
