@@ -1,0 +1,58 @@
+{
+  "StudyId": "dd26d8ce-8ad1-4234-b9f1-4c60df6aff7b",
+  "ChangeSetId": "b6e0a9d4-bc0d-48c4-86af-a36d21d81e89",
+    "SimulationOptions": {
+        "Locale": 1033,
+        "SolutionOptions": {
+            "ParquetSchemaVersion": 2
+        },
+        "EnableRealTimeLog": true,
+        "SimulationTasks": [
+      {
+        "Name": "Printing environment variables to console",
+        "TaskType": "Pre",
+        "Arguments": "printenv",
+        "ContinueOnError": true,
+        "ExecutionOrder": 1
+      },
+    {
+        "Name": "Download datahub content and ensure files are present",
+        "TaskType": "Pre",
+        "Files": [
+          {
+            "Path": "Anthony/PrePostDemo/requirements.txt",
+            "Version": null
+          }
+        ]
+        "Arguments": "ls al",
+        "ContinueOnError": true,
+        "ExecutionOrder": 1
+        ],
+    },
+      {
+        "Name": "Checking Status of environment",
+        "TaskType": "Post",
+        "Arguments": "plexos-cloud environment status -f table",
+        "ContinueOnError": true,
+        "ExecutionOrder": 2
+      }
+    ]
+  },
+    },
+  "SimulationData": [
+  {
+    "Uri": "https://studies-api-eeprod-na.energyexemplar.com/1.0/downloads/studies/dd26d8ce-8ad1-4234-b9f1-4c60df6aff7b/changesets/b6e0a9d4-bc0d-48c4-86af-a36d21d81e89/ancillaryfiles-zip",
+    "Type": "AncillaryZippedInput"
+  }
+  ],
+  "SimulationEngine": {
+    "EngineId": "c92799d3-8eda-4570-8a4f-ab1bd80440ce",
+    "Version": "15.1.135.0",
+    "EngineType": "Performance",
+    "OperatingSystem": 1,
+    "OptimizationEngine": 1
+  },
+  "Source": "Jupyter",
+  "RequestedCpuCores": 4,
+  "MinimumMemoryInGb": 32.00
+}

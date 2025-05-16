@@ -36,16 +36,23 @@
       {
         "Name": "Post Simulation querying of parquet data",
         "TaskType": "Post",
-        "Arguments": "python3 query_data.py",
+        "Arguments": "python3 query_data.py {simulation_id}",
         "ContinueOnError": true,
         "ExecutionOrder": 3
+      },
+     {
+        "Name": "List All files in directory",
+        "TaskType": "Post",
+        "Arguments": "python3 listfiles.py",
+        "ContinueOnError": true,
+        "ExecutionOrder": 4
       },
       {
         "Name": "Delete Post simulation script artifacts",
         "TaskType": "Post",
         "Arguments": "python3 clean_workflow_files.py",
         "ContinueOnError": true,
-        "ExecutionOrder": 4
+        "ExecutionOrder": 5
       }
     ]
   },
@@ -59,15 +66,15 @@
     "InstanceCount": 1
   },
   "SimulationEngine": {
-    "EngineId": "da766ef5-9410-4639-a3b4-c707c2c83f3e",
-    "Version": "11.000.002.25022621",
+    "EngineId": "d8eb82d3-6b77-4d73-bd7f-a3cfa54fcbeb",
+    "Version": "11.000.003.25042914",
     "EngineType": "Performance",
     "OperatingSystem": 1,
     "OptimizationEngine": 0
   },
   "Source": "Jupyter",
   "Priority": 1,
-  "RequestedCpuCores": 2,
-  "MinimumMemoryInGb": 16.00,
+  "RequestedCpuCores": 4,
+  "MinimumMemoryInGb": 32.00,
   "SimulationType": "None"
 }

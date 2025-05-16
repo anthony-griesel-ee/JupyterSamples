@@ -68,4 +68,7 @@ def wait_execution_finish(pxc: CloudSDK, execution_id: GuidValue) -> list[Contra
 def download_solution_data(pxc: CloudSDK, solution_id: GuidValue, output_directory: str) -> None:
     pxc.solution.download_solution(solution_id=solution_id, output_directory=output_directory, solution_type="TaskArtifacts", overwrite=True)
     pxc.solution.download_solution(solution_id=solution_id, output_directory=output_directory, solution_type="AgentLog", overwrite=True)
+    pxc.solution.download_solution(solution_id=solution_id, output_directory=output_directory, solution_type="AuroraLog", overwrite=True)
+    pxc.solution.download_solution(solution_id=solution_id, output_directory=output_directory, solution_type="AuroraDatabase", overwrite=True)
+    
     print("Solution data downloaded")
